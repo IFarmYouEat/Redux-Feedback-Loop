@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 
 function Feelings () {
     const dispatch = useDispatch();
-    let [feeling, setFeeling] = useState('');
-    const storedFeeling = useSelector(store => store.feelingFeedback)
+    const history = useHistory();
+    let [feeling, setFeeling] = useState(5);
 
     const handleChange = (value) => {
         setFeeling(value);
@@ -14,7 +15,8 @@ function Feelings () {
     const addFeeling = (event) => {
         event.preventDefault();
         dispatch({type: 'ADD_FEELING', payload: feeling});
-        setFeeling('');
+        setFeeling(5);
+        history.push('/understanding');
     }
 
     return(
@@ -22,13 +24,14 @@ function Feelings () {
             <form onSubmit={addFeeling}>
                 Feeling:
                 <input 
-                    type='text' 
+                    type='number' 
+                    min="1"
+                    max="10"
                     value={feeling} 
                     onChange={(event) => handleChange(event.target.value)}>
                 </input>
-                <button type='submit'>Submit</button>
+                <button type='submit'>NEXT</button>
             </form>
-            {storedFeeling}
         </div>
     )
 }
