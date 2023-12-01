@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 function Feelings () {
     const dispatch = useDispatch();
     let [feeling, setFeeling] = useState('');
+    const storedFeeling = useSelector(store => store.feelingFeedback)
 
     const handleChange = (value) => {
         setFeeling(value);
@@ -27,7 +28,7 @@ function Feelings () {
                 </input>
                 <button type='submit'>Submit</button>
             </form>
-            {feeling}
+            {storedFeeling}
         </div>
     )
 }

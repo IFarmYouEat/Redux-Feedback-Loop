@@ -7,12 +7,12 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 
-const objectOfFeedback = (state = [], action) => {
+const feelingFeedback = (state = [], action) => {
     switch(action.type) {
         case 'ADD_FEELING':
             console.log('Feeling added', action.payload)
             return action.payload;
-        case 'CLEAR_OBJECTOFFEEDBACK':
+        case 'CLEAR_FEEDBACK':
             return state = [];
         default:
             return state;
@@ -21,7 +21,7 @@ const objectOfFeedback = (state = [], action) => {
 
 const store = createStore(
     combineReducers({
-        objectOfFeedback
+        feelingFeedback
     }),
     applyMiddleware(logger),
 );
