@@ -8,6 +8,25 @@ function Submit(){
     const understandingFeedback = useSelector(store => store.understandingFeedback);
     const supportFeedback = useSelector(store => store.supportFeedback);
     const commentFeedback = useSelector(store => store.commentFeedback);
+    const history = useHistory();
+
+    const sendToServer = () => {
+    
+        axios({
+            method: 'POST',
+            url: '/feedback',
+            data: {
+                feelings: feelingFeedback, 
+                understanding: understandingFeedback, 
+                support: supportFeedback, 
+                comments: commentFeedback}
+        }).then((response) => {
+            history.push('/');
+        }).catch((error) => {
+            console.log('Could not post to database', error)
+        });
+
+    }
 
     return(
         <div>
@@ -16,6 +35,7 @@ function Submit(){
             <p>Understanding: {understandingFeedback}</p>
             <p>Support: {supportFeedback}</p>
             <p>Comments: {commentFeedback}</p>
+            <button onClick={sendToServer}>Submit</button>
         </div>
     )
 }
