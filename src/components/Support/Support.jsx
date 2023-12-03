@@ -1,11 +1,11 @@
-import {useHistory} from 'react-router-dom';
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-function Support(){
+function Support() {
     const dispatch = useDispatch();
     const history = useHistory();
-    let [support, setSupport] = useState(5);
+    let [support, setSupport] = useState('');
 
     const handleChange = (value) => {
         setSupport(value);
@@ -13,12 +13,16 @@ function Support(){
 
     const addSupport = (event) => {
         event.preventDefault();
-        dispatch({type: 'ADD_SUPPORT', payload: support});
-        setSupport(5);
-        history.push('/comments');
+        if (support === '') {
+            alert('A value from 1 to 10 must be entered');
+        } else {
+            dispatch({ type: 'ADD_SUPPORT', payload: support });
+            setSupport('');
+            history.push('/comments');
+        }
     }
 
-    return(
+    return (
         <div>
             <h1>How well are you being supported?</h1>
             <form onSubmit={addSupport}>

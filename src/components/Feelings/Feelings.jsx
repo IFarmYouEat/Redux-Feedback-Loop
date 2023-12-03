@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import { useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
-function Feelings () {
+function Feelings() {
     const dispatch = useDispatch();
     const history = useHistory();
-    let [feeling, setFeeling] = useState(5);
+    let [feeling, setFeeling] = useState('');
 
     const handleChange = (value) => {
         setFeeling(value);
@@ -14,20 +14,26 @@ function Feelings () {
 
     const addFeeling = (event) => {
         event.preventDefault();
-        dispatch({type: 'ADD_FEELING', payload: feeling});
-        setFeeling(5);
-        history.push('/understanding');
+        if (feeling === '') {
+            alert('A value from 1 to 10 is required.')
+        } else {
+            dispatch({ type: 'ADD_FEELING', payload: feeling });
+            setFeeling('');
+            history.push('/understanding');
+        }
     }
 
-    return(
+    return (
         <div>
+            <h1>How are you feeling today?</h1>
+            <br></br>
             <form onSubmit={addFeeling}>
                 Feeling:
-                <input 
-                    type='number' 
+                <input
+                    type='number'
                     min="1"
                     max="10"
-                    value={feeling} 
+                    value={feeling}
                     onChange={(event) => handleChange(event.target.value)}>
                 </input>
                 <button type='submit'>NEXT</button>

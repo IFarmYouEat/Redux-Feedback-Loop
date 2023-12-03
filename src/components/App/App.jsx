@@ -6,7 +6,7 @@ import Submit from '../Submit/Submit.jsx';
 import Support from '../Support/Support.jsx';
 import Understanding from '../Understanding/Understanding.jsx';
 import './App.css';
-import{HashRouter as Router, Route, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 function App() {
 
@@ -22,10 +22,10 @@ function App() {
         <Route exact path='/understanding'><Understanding /></Route>
         <Route exact path='/support'><Support /></Route>
         <Route exact path='/comments'><Comments /></Route>
-        <Route exact path='/submit'><Submit/></Route>
+        <Route exact path='/submit'><Submit /></Route>
 
       </Router>
-      
+
 
 
     </div>

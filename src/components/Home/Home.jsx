@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
@@ -30,31 +30,30 @@ function Home() {
 
     return (
         <div>
-        <p>You are home.</p>
-        <button onClick={startForm}>Submit New Feedback</button>
-        
-        <table>
-            <thead>
-                <tr>
-                    <td>Date:</td>
-                    <td>Feeling</td>
-                    <td>Understanding</td>
-                    <td>Support</td>
-                    <td>Comments</td>
-                </tr>
-            </thead>
-            <tbody>
-                {feedback.map((entry) => 
-                <tr key={entry.id}>
-                    <td>{entry.date.slice(0,10)}</td>
-                    <td>{entry.feeling}</td>
-                    <td>{entry.understanding}</td>
-                    <td>{entry.support}</td>
-                    <td>{entry.comments}</td>
-                </tr>
-                )}
-            </tbody>
-        </table>
+            <button onClick={startForm}>Submit New Feedback</button>
+            <br /><br />
+            <table>
+                <thead>
+                    <tr>
+                        <td>Date:</td>
+                        <td>Feeling</td>
+                        <td>Understanding</td>
+                        <td>Support</td>
+                        <td>Comments</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {feedback.map((entry) =>
+                        <tr key={entry.id}>
+                            <td>{entry.date.slice(0, 10)}</td>
+                            <td>{entry.feeling}</td>
+                            <td>{entry.understanding}</td>
+                            <td>{entry.support}</td>
+                            <td>{entry.comments}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
         </div>
     )
 }

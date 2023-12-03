@@ -1,11 +1,11 @@
-import {useHistory} from 'react-router-dom';
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-function Understanding(){
+function Understanding() {
     const dispatch = useDispatch();
     const history = useHistory();
-    let [understand, setUnderstand] = useState(5);
+    let [understand, setUnderstand] = useState('');
 
     const handleChange = (value) => {
         setUnderstand(value);
@@ -13,12 +13,16 @@ function Understanding(){
 
     const addUnderstand = (event) => {
         event.preventDefault();
-        dispatch({type: 'ADD_UNDERSTANDING', payload: understand});
-        setUnderstand(5);
-        history.push('/support');
+        if (understand === '') {
+            alert('A value from 1 to 10 is required');
+        } else {
+            dispatch({ type: 'ADD_UNDERSTANDING', payload: understand });
+            setUnderstand('');
+            history.push('/support');
+        }
     }
 
-    return(
+    return (
         <div>
             <h1>How well are you understanding the content?</h1>
             <form onSubmit={addUnderstand}>
